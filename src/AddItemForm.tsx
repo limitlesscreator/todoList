@@ -1,5 +1,7 @@
 import React, {ChangeEvent, KeyboardEvent, useState} from "react";
 import s from "./StylesModule/Todolist.module.sass";
+import {Button, IconButton, TextField} from "@material-ui/core";
+import {AddSharp} from "@material-ui/icons";
 
 type AddItemFormPropsType = {
     addItem: (title: string) => void
@@ -34,14 +36,17 @@ export function AddItemForm(props: AddItemFormPropsType) {
         setNewTaskTitle('')
     }
     return <div>
-        <input
-            className={error ? s.error : ''}
-            type="text"
+        <TextField
+            label={'title'}
+            error={!!error}
+            variant={"outlined"}
             value={newTaskTitle}
             onChange={onNewTitleChangeHandler}
-            onKeyPress={onKeyPressHandler}/>
-        <button onClick={addTask}>+</button>
-        {error && <div className={s.errorText}>Title is required</div>}
+            onKeyPress={onKeyPressHandler}
+            helperText={error}/>
+        <IconButton onClick={addTask} >
+            <AddSharp/>
+        </IconButton>
     </div>
 
 }
