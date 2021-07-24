@@ -24,21 +24,21 @@ export function App() {
         let tasks = tasksObj[todolistId]
         let filteredTasks = tasks.filter(t => t.id !== id)
         tasksObj[todolistId] = filteredTasks
-        setTasks({...tasksObj})
+        setTasksObj({...tasksObj})
     }
     const addTask = (title: string, todolistId: string) => {
         let newTask = {id: v1(), title: title, active: false}
         let tasks = tasksObj[todolistId]
         let newTasks = [newTask, ...tasks]
         tasksObj[todolistId] = newTasks
-        setTasks({...tasksObj})
+        setTasksObj({...tasksObj})
     }
     const changeStatusTask = (taskId: string, status: boolean, todolistId: string) => {
         let tasks = tasksObj[todolistId]
         let task = tasks.find(t => t.id === taskId)
         if (task) {
             task.active = status
-            setTasks({...tasksObj})
+            setTasksObj({...tasksObj})
         }
     }
     const changeTaskTitle = (taskId: string, newTitle: string, todolistId: string) => {
@@ -46,7 +46,7 @@ export function App() {
         let task = tasks.find(t => t.id === taskId)
         if (task) {
             task.title = newTitle
-            setTasks({...tasksObj})
+            setTasksObj({...tasksObj})
         }
     }
     const changeFilter = (valueFilter: FilterValuesType, todolistId: string) => {
@@ -69,7 +69,7 @@ export function App() {
         setTodolists(filteredTodolist)
 
         delete tasksObj[todolistId]
-        setTasks({...tasksObj})
+        setTasksObj({...tasksObj})
     }
     let changeTodolistTitle = (todolistId: string, newTitle: string) => {
         const todolist = todolists.find(tl => tl.id === todolistId)
@@ -78,7 +78,7 @@ export function App() {
             setTodolists([...todolists])
         }
     }
-    let [tasksObj, setTasks] = useState<TasksStateType>({
+    let [tasksObj, setTasksObj] = useState<TasksStateType>({
         [todolistId1]: [
             {id: v1(), title: 'react', active: true},
             {id: v1(), title: 'css', active: true},
@@ -96,7 +96,7 @@ export function App() {
             title: title
         }
         setTodolists([todolist, ...todolists])
-        setTasks({
+        setTasksObj({
             ...tasksObj,
             [todolist.id]: []
         })
