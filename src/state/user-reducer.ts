@@ -23,7 +23,7 @@ export const userReducer = (state: StateType, action: ActionType): StateType => 
         case 'CHANGE-NAME':
             return {
                 ...state,
-                name : action.name
+                name : action.newName
             }
 
         default:

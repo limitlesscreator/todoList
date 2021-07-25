@@ -18,7 +18,22 @@ type TasksStateType = {
 }
 
 export function App() {
-
+    let todolistId1 = v1()
+    let todolistId2 = v1()
+    let [todolists, setTodolists] = useState<Array<TodolistType>>([
+        {id: todolistId1, title: 'what to learn', filter: 'all'},
+        {id: todolistId2, title: 'show me what you can do', filter: 'all'},
+    ])
+    let [tasksObj, setTasksObj] = useState<TasksStateType>({
+        [todolistId1]: [
+            {id: v1(), title: 'react', active: true},
+            {id: v1(), title: 'css', active: true},
+            {id: v1(), title: 'redux', active: false},],
+        [todolistId2]: [
+            {id: v1(), title: 'book', active: true},
+            {id: v1(), title: 'SQL', active: false},
+            {id: v1(), title: 'Ruby', active: false},]
+    })
 
     const removeTasks = (id: string, todolistId: string) => {
         let tasks = tasksObj[todolistId]
@@ -57,13 +72,8 @@ export function App() {
         }
     }
 
-    let todolistId1 = v1()
-    let todolistId2 = v1()
 
-    let [todolists, setTodolists] = useState<Array<TodolistType>>([
-        {id: todolistId1, title: 'what to learn', filter: 'all'},
-        {id: todolistId2, title: 'show me what you can do', filter: 'all'},
-    ])
+
     let removeTodolist = (todolistId: string) => {
         let filteredTodolist = todolists.filter(tl => tl.id !== todolistId)
         setTodolists(filteredTodolist)
@@ -78,16 +88,6 @@ export function App() {
             setTodolists([...todolists])
         }
     }
-    let [tasksObj, setTasksObj] = useState<TasksStateType>({
-        [todolistId1]: [
-            {id: v1(), title: 'react', active: true},
-            {id: v1(), title: 'css', active: true},
-            {id: v1(), title: 'redux', active: false},],
-        [todolistId2]: [
-            {id: v1(), title: 'book', active: true},
-            {id: v1(), title: 'SQL', active: false},
-            {id: v1(), title: 'Ruby', active: false},]
-    })
 
     function addTodolist(title: string) {
         let todolist: TodolistType = {
