@@ -13,7 +13,7 @@ export type TodolistType = {
     filter: FilterValuesType
 }
 
-type TasksStateType = {
+export type TasksStateType = {
     [key: string]: Array<TasksType>
 }
 
@@ -71,7 +71,6 @@ export function App() {
             setTodolists([...todolists])
         }
     }
-
 
 
     let removeTodolist = (todolistId: string) => {
